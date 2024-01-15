@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block body_class %}onboarding{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-md-center">
+    <div class="col-md-7 col-lg-5">
+        <h2 class="join-message">Sign up to start translating!</h2>
+        <form method="POST" id="user_form">
+            {{ form.hidden_tag() }}
+
+            {% for field in form if field.widget.input_type != 'hidden' %}
+            {% for error in field.errors %}
+            <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+            {{ field(placeholder=field.label.text, class="form-control input-style") }}
+            {% endfor %}
+
+            <button class="btn custom-btn-primary btn-md btn-block">Sign me up!</button>
+        </form>
+        <br>
+        <br>
+        <h2>Already signed up?</h2>
+        <h4><span><a href="/login">Login</a></span></h4>
+    </div>
+</div>
+
+{% endblock %}

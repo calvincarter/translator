@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Translate</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+    <script src="https://unpkg.com/bootstrap"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="shortcut icon" type="image/jpg" href="/static/favicon.ico?v=2">
+</head>
+
+<body>
+    <nav class="navbar nav-1 navbar-expand mb-5">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                    <i class="fas fa-language"></i>
+                </a>
+                <a class="navbar-brand nav-text" href="/translate">
+                    Translate
+                </a>
+            </div>
+            <div class="navbar-collapse">
+                <ul class="navbar-nav">
+                    {% if g.user %}
+                    <li class="nav-item"><a class="nav-link nav-text" href='/history'>History</a></li>
+                    <li class="nav-item"><a class="nav-link nav-text" href='/saved-searches'>Saved</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav ms-auto">
+                    {% if not g.user %}
+                    <li class="nav-item"><a class="nav-link nav-text" href="/signup">Sign up</a></li>
+                    <li class="nav-item"><a class="nav-link nav-text" href="/login">Log in</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link nav-text" href="/logout">Log out</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="/static/app.js"></script>
+</body>
+
+</html>

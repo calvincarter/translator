@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center mb-4">Search history:</h1>
+
+            <ul class="list-group">
+                {% for search in searches %}
+                <li class="list-group-item mb-3 position-relative">
+                    <div class="search">
+                        {% if search.word_lang == 'en' %}
+                        <p>Search: {{ search.word }}</p>
+                        <p>Translation: {{ search.translation }}</p>
+                        <p>Pinyin: {{ search.pinyin }}</p>
+                        {% endif %}
+                        {% if search.word_lang == 'zh' or search.word_lang == 'zh-CN' %}
+                        <p>Search: {{ search.word }}</p>
+                        <p>Pinyin: {{ search.pinyin }}</p>
+                        <p>Translation: {{ search.translation }}</p>
+                        {% endif %}
+                    </div>
+                    <i class="fas fa-trash delete-search" data-search-id="{{ search.id }}"></i>
+                    <i class="fa-star save-search {{ 'fas' if search.is_saved else 'far' }}"
+                        data-search-id="{{ search.id }}" data-saved="{{ 'fas' if search.is_saved else 'far' }}"></i>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+from models import db
+from models import db, connect_db, User, Searches, PasswordResetRequest
+db.drop_all()
+db.create_all()
