@@ -10,10 +10,10 @@ Flask-Bcrypt==1.0.1
 Flask-DebugToolbar==0.14.1
 Flask-SQLAlchemy==3.1.1
 Flask-WTF==1.2.1
-google-api-core==1.34.0
-google-auth==1.35.0
-google-cloud-core==1.7.3
-google-cloud-translate==2.0.1
+google-api-core==2.15.0
+google-auth==2.25.2
+google-cloud-core==2.4.1
+google-cloud-translate==3.13.0
 googleapis-common-protos==1.62.0
 greenlet==3.0.3
 grpcio==1.60.0

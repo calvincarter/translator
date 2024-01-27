@@ -22,6 +22,8 @@ p = Pinyin()
 
 CREDENTIALS = json.loads(os.getenv('CREDENTIALS'))
 
+
+
 if os.path.exists('credentials.json'):
     pass
 else:
@@ -50,8 +52,8 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
 
 # toolbar = DebugToolbarExtension(app)
 
-connect_db(app)
-db.create_all()
+with app.app_context():
+    connect_db(app)
 
 @app.before_request
 def add_user_to_g():
